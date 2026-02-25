@@ -1,3 +1,49 @@
+# ErsatzTV_Music
+
+Custom fork of ErsatzTV with enhanced API support for manual collections and session tracking.
+
+## 🚀 Features Added
+
+- **Manual Collection API**: Add/remove items to manual collections via API
+- **Session Tracking API**: Get now-playing information including artist, track, filename, time remaining
+- **Port**: Runs on **8410** (instead of default 8409)
+
+## 📡 API Endpoints
+
+### Manual Collections
+- `GET /api/collections/manual` - List all manual collections
+- `GET /api/collections/manual/{id}` - Get specific collection
+- `POST /api/collections/manual/new` - Create collection
+- `PUT /api/collections/manual/update/{id}` - Update collection
+- `DELETE /api/collections/manual/delete/{id}` - Delete collection
+- `POST /api/collections/manual/{id}/items` - Add items to collection
+- `DELETE /api/collections/manual/{id}/items` - Remove items from collection
+
+### Session Tracking
+- `GET /api/sessions/now/{channelId}` - Get now-playing for channel
+- `GET /api/sessions/now` - Get now-playing for all channels
+- `GET /api/sessions/active` - List active sessions
+
+## 🐳 Docker
+
+```bash
+# Pull the image
+docker pull fireishott/ersatztv-music:latest
+
+# Run container (port 8410)
+docker run -d \
+  --name ersatztv-music \
+  -p 8410:8410 \
+  -v /path/to/config:/config \
+  -v /path/to/media:/media \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=America/New_York \
+  fireishott/ersatztv-music:latest
+
+
+
+
 # ErsatzTV
 
 ErsatzTV lets you transform your media library into a personalized, live TV experience - complete with EPG, channel scheduling, and seamless streaming to all your devices. Rediscover your content, your way.
