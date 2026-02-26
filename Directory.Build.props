@@ -1,7 +1,8 @@
-<Project>
-    <PropertyGroup>
-        <InformationalVersion>develop</InformationalVersion>
-        <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-        <AllowMissingPrunePackageData>true</AllowMissingPrunePackageData>
-    </PropertyGroup>
+﻿<Project>
+  <PropertyGroup>
+    <RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+    <NoWarn>$(NoWarn);RZ10012;CS0246;CS0104;CS0117;CS1061;CS0234;CS0436;CS8618;CS8625;CS8600;CS8632;CS8634;CS8655</NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
 </Project>

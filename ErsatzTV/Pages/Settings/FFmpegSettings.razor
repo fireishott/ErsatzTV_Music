@@ -1,9 +1,19 @@
-@page "/settings/ffmpeg"
+﻿@page "/settings/ffmpeg"
+
+@using MediatR
+@using MudBlazor
+@using System.Threading.Channels
+@using Channels = ErsatzTV.Application.Channels
+@using ErsatzTV.Application.Decos
+@using ErsatzTV.Application.Playouts
+@using ErsatzTV.Application.Playlists
+@using ErsatzTV.Application.Schedules
+@using ErsatzTV.Application.Templates
 @using ErsatzTV.Application.Configuration
 @using ErsatzTV.Application.FFmpegProfiles
 @using ErsatzTV.Application.Filler
 @using ErsatzTV.Application.MediaItems
-@using ErsatzTV.Application.Resolutions
+@using Resolutions = ErsatzTV.Application.Resolutions
 @using ErsatzTV.Application.Watermarks
 @using ErsatzTV.Core.Domain.Filler
 @using ErsatzTV.Core.FFmpeg
@@ -291,3 +301,6 @@
     }
 
 }
+
+
+

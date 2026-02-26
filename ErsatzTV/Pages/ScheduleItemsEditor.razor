@@ -1,4 +1,14 @@
 ﻿@page "/schedules/{Id:int}/items"
+
+@using MediatR
+@using MudBlazor
+@using System.Threading.Channels
+@using ErsatzTV.Application.Channels
+@using ErsatzTV.Application.Decos
+@using ErsatzTV.Application.Playouts
+@using ErsatzTV.Application.Playlists
+@using ErsatzTV.Application.Schedules
+@using ErsatzTV.Application.Templates
 @using ErsatzTV.Application.Filler
 @using ErsatzTV.Application.Graphics
 @using ErsatzTV.Application.MediaCollections
@@ -1137,3 +1147,4 @@
 
     private string SelectedRowClassFunc(ProgramScheduleItemEditViewModel element, int rowNumber) => _selectedItem != null && _selectedItem == element ? "selected" : string.Empty;
 }
+

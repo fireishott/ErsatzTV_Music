@@ -1,4 +1,17 @@
 ﻿@page "/media/sources/local"
+
+@using MediatR
+@using MudBlazor
+@using ErsatzTV.Core
+@using ErsatzTV.Core.Domain
+@using System.Threading.Channels
+@using ErsatzTV.Application.Channels
+@using ErsatzTV.Application.Decos
+@using ErsatzTV.Application.Playouts
+@using ErsatzTV.Application.Playlists
+@using ErsatzTV.Application.Schedules
+@using ErsatzTV.Application.Templates
+@using ErsatzTV.Application.Watermarks
 @using ErsatzTV.Application.Libraries
 @implements IDisposable
 @inject IDialogService Dialog
@@ -129,3 +142,4 @@
         _cts?.Dispose();
     }
 }
+

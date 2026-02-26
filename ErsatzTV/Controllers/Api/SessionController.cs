@@ -1,28 +1,59 @@
-using ErsatzTV.Core.FFmpeg;
-using ErsatzTV.Core.Interfaces.FFmpeg;
+﻿#nullable enable
+
+using ErsatzTV.Core.Interfaces.Streaming;
+using ErsatzTV.Core.Api.Sessions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ErsatzTV.Controllers.Api;
 
 [ApiController]
-[EndpointGroupName("general")]
-public class SessionController(IFFmpegSegmenterService ffmpegSegmenterService)
+[Route("api/sessions")]
+public class SessionController : ControllerBase
 {
-    [HttpGet("api/sessions")]
-    [Tags("Sessions")]
-    [EndpointSummary("Get sessions")]
-    public List<HlsSessionModel> GetSessions() => ffmpegSegmenterService.Workers.Map(w => w.GetModel()).ToList();
+    private readonly ISessionTracker _sessionTracker;
+    private readonly ILogger<SessionController> _logger;
 
-    [HttpDelete("api/session/{channelNumber}")]
-    [Tags("Sessions")]
-    [EndpointSummary("Stop session")]
-    public async Task<IActionResult> StopSession(string channelNumber, CancellationToken cancellationToken)
+    public SessionController(ISessionTracker sessionTracker, ILogger<SessionController> logger)
     {
-        if (await ffmpegSegmenterService.StopChannel(channelNumber, cancellationToken))
-        {
-            return new NoContentResult();
-        }
+        _sessionTracker = sessionTracker;
+        _logger = logger;
+    }
 
-        return new NotFoundResult();
+    [HttpGet("now/{channelId}")]
+    public IActionResult GetNowPlaying(int channelId)
+    {
+        var nowPlaying = _sessionTracker.GetNowPlayingForChannel(channelId);
+        
+        if (nowPlaying == null)
+            return NotFound(new { message = $"No active stream for channel {channelId}" });
+
+        return Ok(nowPlaying);
+    }
+
+    [HttpGet("now")]
+    public IActionResult GetAllNowPlaying()
+    {
+        var sessions = _sessionTracker.GetActiveSessions();
+        var nowPlaying = sessions
+            .Where(s => s.NowPlaying != null)
+            .Select(s => s.NowPlaying!)
+            .GroupBy(np => np.ChannelId)
+            .Select(g => g.OrderByDescending(np => np.StartedAt).First())
+            .ToList();
+
+        return Ok(nowPlaying);
+    }
+
+    [HttpGet("active")]
+    public IActionResult GetActiveSessions()
+    {
+        return Ok(_sessionTracker.GetActiveSessions());
+    }
+
+    [HttpDelete("session/{sessionId}")]
+    public IActionResult EndSession(string sessionId)
+    {
+        _sessionTracker.EndSession(sessionId);
+        return Ok(new { message = $"Session {sessionId} ended" });
     }
 }

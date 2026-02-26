@@ -1,4 +1,17 @@
-@page "/settings/scanner"
+﻿@page "/settings/scanner"
+
+@using MediatR
+@using MudBlazor
+@using ErsatzTV.Core
+@using ErsatzTV.Core.Domain
+@using System.Threading.Channels
+@using ErsatzTV.Application.Channels
+@using ErsatzTV.Application.Decos
+@using ErsatzTV.Application.Playouts
+@using ErsatzTV.Application.Playlists
+@using ErsatzTV.Application.Schedules
+@using ErsatzTV.Application.Templates
+@using ErsatzTV.Application.Watermarks
 @using ErsatzTV.Application.Configuration
 @implements IDisposable
 @inject IMediator Mediator
@@ -78,3 +91,4 @@
     }
 
 }
+

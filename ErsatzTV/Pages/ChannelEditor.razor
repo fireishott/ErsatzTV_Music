@@ -1,4 +1,12 @@
 ﻿@page "/channels/{Id:int?}"
+
+@using MediatR
+@using MudBlazor
+@using System.Threading.Channels
+@using ErsatzTV.Application.Decos
+@using ErsatzTV.Application.Playouts
+@using ErsatzTV.Application.Playlists
+@using ErsatzTV.Application.Schedules
 @page "/channels/add"
 @using System.Globalization
 @using ErsatzTV.Application.Artworks
@@ -525,3 +533,4 @@ else
     }
 
 }
+

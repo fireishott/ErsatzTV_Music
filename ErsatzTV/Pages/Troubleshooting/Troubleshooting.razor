@@ -1,4 +1,17 @@
 ﻿@page "/system/troubleshooting"
+
+@using MediatR
+@using MudBlazor
+@using ErsatzTV.Core
+@using ErsatzTV.Core.Domain
+@using System.Threading.Channels
+@using ErsatzTV.Application.Channels
+@using ErsatzTV.Application.Decos
+@using ErsatzTV.Application.Playouts
+@using ErsatzTV.Application.Playlists
+@using ErsatzTV.Application.Schedules
+@using ErsatzTV.Application.Templates
+@using ErsatzTV.Application.Watermarks
 @using System.Runtime.InteropServices
 @using System.Text.Json
 @using System.Text.Json.Serialization
@@ -193,3 +206,4 @@
     private async Task CopyToClipboard(ElementReference view) => await JsRuntime.InvokeVoidAsync("clipboardCopy.copyText", view);
 
 }
+

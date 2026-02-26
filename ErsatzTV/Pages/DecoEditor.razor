@@ -1,4 +1,14 @@
 ﻿@page "/decos/{Id:int}"
+
+@using MediatR
+@using MudBlazor
+@using System.Threading.Channels
+@using ErsatzTV.Application.Channels
+@using ErsatzTV.Application.Decos
+@using ErsatzTV.Application.Playouts
+@using ErsatzTV.Application.Playlists
+@using ErsatzTV.Application.Schedules
+@using ErsatzTV.Application.Templates
 @using ErsatzTV.Application.Graphics
 @using ErsatzTV.Application.MediaCollections
 @using ErsatzTV.Application.MediaItems
@@ -880,3 +890,4 @@
 
     private string SelectedRowClassFunc(DecoBreakContentEditViewModel element, int rowNumber) => _selectedBreakContent != null && _selectedBreakContent == element ? "selected" : string.Empty;
 }
+
