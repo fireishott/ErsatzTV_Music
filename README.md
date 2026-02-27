@@ -1,5 +1,5 @@
 # ErsatzTV_Music
-
+******DO NOT USE AS IS AT THE MOMENT****
 Custom fork of ErsatzTV with enhanced API support for manual collections and session tracking.
 
 ## 🚀 Features Added
